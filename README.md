@@ -1,8 +1,15 @@
-# Authorize
-- with google, github, password & email
-- web tokens (ask about tokens vs sessions)
-- separate server (Postgres Koa)
+# Foodies - Restaurant Finder 
+The App shows Restaurants of all sort in your area that based on you location & favorited selections.
+It will also show suggestions. It allows users to sign in with Google api.
 
-# Map Google APItt
-- use with google services along side of
--
+## API's
+1. Mapbox API
+2. Yelp API
+3. Google Places API
+4. Google Identity
+
+## Tech
+- .Net
+- Next.js (React.js)
+- Typescript
+- Postgres
