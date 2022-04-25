@@ -1,68 +1,68 @@
+import Map, { Marker, Popup } from "react-map-gl";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import type { NextPage } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import { useEffect, useReducer, useState } from "react";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { Dispatch } from "redux";
+import { increment } from "../src/store/actions/actionCreators/increment";
+import styles from "../styles/Home.module.css";
+import Paper from "@mui/material/Paper";
+import { makeStyles } from "@mui/styles";
 
-import ReactMapGL, { Marker, Popup } from 'react-map-gl'
-import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import { useEffect, useReducer, useState } from 'react'
-import { shallowEqual, useDispatch, useSelector } from 'react-redux'
-import { Dispatch } from 'redux'
-import { increment } from '../src/store/actions/actionCreators/increment'
-import styles from '../styles/Home.module.css'
-import Paper from '@mui/material/Paper'
-import { makeStyles } from '@mui/styles'
+const useStyles = makeStyles((theme) => ({}));
 
-
-const useStyles = makeStyles((theme) => ({
-  backgroundClass: {
-
-    
-  }
-}));
-
-function Home() {  
-  const [popup, setPopupStatus] = useState('hide')
-  const [restaurants, getRestaurants] = useState()
-  const [values, setValues] = useState({
+function Home() {
+  const [popup, setPopupStatus] = useState("hide");
+  const [restaurants, getRestaurants] = useState();
+  const [state, setState] = useState({
     lat: 39.9526,
-    lng: 75.1652,
+    lng: -75.1652,
     zipcode: 19019,
-    radius: 15000,
-  })
+    radius: 40000,
+  });
   const classes = useStyles();
-  const url = "https://api.yelp.com/v3/businesses/search?"
-
+  const url = "https://api.yelp.com/v3/businesses/search?";
   useEffect(() => {
-    fetch(`zipcode=${values.zipcode}&radius=${values.radius}`, 
+    fetch("https://api.yelp.com/v3/businesses/search?location=19019&radius=40000",
     {
-      method: 'POST', // or 'PUT'
       headers: {
-        'X-API-KEY': process.env.YELP_API_KEY as string,
-        'Content-Type': 'application/json',
+        Authorization: "Bearer " + process.env.NEXT_PUBLIC_YELP_API_KEY,
+        Origin: 'localhost',
       }
     })
-    .then((res) => {
-      console.log(res.json())      
-    })
-    .catch((err) => {
-      console.log('Error Message: ', err)
-    })
+    // fetch(url + `location=${state.zipcode}&radius=${state.radius}`, {
+    //   headers: {
+    //     "Cache-Control": "no-cache",
+    //     "Accept": "*/*",
+    //     "Connection": "keep-alive",
+    //     "Accept-Encoding": "gzip, dflate, br",
+    //     Authorization: 'Bearer CSiguMJNp2BL4tZcudgNueu6CPRy-lax1Zltio523c0ecnCmbdL0LIlAdfMeMntl85UOQoYCyJ8kJvRSGu2X_LvqBGLbcZSaT6yihQXsLV-MOPWJWvI_z8cUeJdTYnYx',
+    //     "Access-Control-Allow-Origin": 'localhost',
+    //   },
+    // })
+      .then((res) => res.json())
+      .catch((err) => {
+        console.log("Error Message: ", err);
+      });
+  });
 
-  })
-
-  const dispatch: Dispatch<any> = useDispatch()
+  const dispatch: Dispatch<any> = useDispatch();
   enum Status {
-    hide = 'hide',
-    show = 'show',
+    hide = "hide",
+    show = "show",
   }
 
   return (
-    <Box sx={{width: '100%', height: '100vh', overflow: 'hidden'}}>
-      <div className={classes.backgroundClass}>
-        Here is something random!
-      </div>
-      <ReactMapGL
+    <Box sx={{ width: "100%", height: "100vh", overflow: "hidden" }}>
+      <Map
+        initialViewState={{
+          longitude: state.lng,
+          latitude: state.lat,
+          zoom: 10,
+        }}
         mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
         mapStyle="mapbox://styles/mapbox/streets-v11"
       >
@@ -100,9 +100,9 @@ function Home() {
             selectedProperty={selectedProperty}
           />
         )} */}
-      </ReactMapGL>
+      </Map>
     </Box>
-  )
+  );
 }
 
-export default Home
+export default Home;

@@ -33,7 +33,7 @@ const useStyles = makeStyles(() => ({
   tab: {
     minWidth: 10,
     fontFamily: "Arial",
-    color: '#4d4d4d',
+    color: 'green',
     fontSize: "1.1rem",
     transition: "color 0.3s",
     textTransform: "none", // Remove the button transformation styles
@@ -59,9 +59,9 @@ function Headertabs(props: IProps) {
       <Tabs
         value={props.pageValue}
         onChange={handleChange}
-        classes={{
-          indicator: classes.indicator,
-          root: classes.tabs,
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
         }}
         TabIndicatorProps={{ children: <span /> }}
       >
@@ -70,7 +70,7 @@ function Headertabs(props: IProps) {
             key={`${route.link} ${classes.tab}`}
             aria-owns={route.ariaOwns}
             aria-haspopup={props.anchorEl ? "true" : undefined}
-            className={classes.tab}
+            // className={classes.tab}
             component={Link}
             href={route.link}
             onMouseOver={route.mouseOver}

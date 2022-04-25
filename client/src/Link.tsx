@@ -4,9 +4,26 @@ import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import NextLink, { LinkProps as NextLinkProps } from 'next/link';
 import MuiLink, { LinkProps as MuiLinkProps } from '@mui/material/Link';
+import { makeStyles } from '@mui/styles';
 
 type NextComposedProps = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> &
   NextLinkProps;
+
+  const useStyles = makeStyles({
+      link: {
+        fontFamily: "Roboto, Helvetica, Arial, sans-serif",
+        fontWeight: 500,
+        fontSize: "0.875rem",
+        lineHeight: "1.25",
+        letterSpacing: "0.02857em",
+        textTransform: "uppercase",
+        maxWidth: 360,
+        minWidth: 90,
+        position: "relative",
+        minHeight: 48,
+    
+      }
+  });
 
 const NextComposed = React.forwardRef<HTMLAnchorElement, NextComposedProps>((props, ref) => {
   const { as, href, replace, scroll, passHref, shallow, prefetch, ...other } = props;
@@ -55,11 +72,15 @@ function Link(props: LinkProps) {
   if (naked) {
     return <NextComposed className={className} ref={innerRef} href={href} {...other} />;
   }
+  const classes = useStyles()
 
   return (
     <MuiLink
+      underline="none"
+      color={props.color}
+      variant={props.variant}
+      fontSize={props.fontSize}
       component={NextComposed}
-      className={className}
       ref={innerRef}
       href={href as string}
       {...other}

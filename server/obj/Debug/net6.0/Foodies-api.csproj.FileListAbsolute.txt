@@ -139,3 +139,4 @@
 /home/kayc/web/dotnet/Foodies/server/obj/Debug/net6.0/Foodies-api.pdb
 /home/kayc/web/dotnet/Foodies/server/obj/Debug/net6.0/Foodies-api.genruntimeconfig.cache
 /home/kayc/web/dotnet/Foodies/server/obj/Debug/net6.0/ref/Foodies-api.dll
+/home/kayc/web/dotnet/Foodies/server/bin/Debug/net6.0/RestSharp.dll

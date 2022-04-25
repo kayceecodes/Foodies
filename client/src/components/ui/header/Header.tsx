@@ -1,6 +1,5 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
-import Link from "../../../Link";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
@@ -137,6 +136,7 @@ const AccountDropDown = (props: Pick<Props, "setOpen" | "setFormType">) => {
 const useStyles = makeStyles(() => ({
   appbar: {
     fontFamily: "Inter",
+    backgroundColor: "white",
   },  
   paper: {
     backgroundColor: "white",
