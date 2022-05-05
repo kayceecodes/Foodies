@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using RestSharp;
 using System.Net.Http.Headers;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace Foodies_api.Controllers
 {
@@ -34,9 +35,14 @@ namespace Foodies_api.Controllers
             var resp = await Http.GetAsync("https://api.yelp.com/v3/businesses/search?location=19019&radius=40000");
             
             var jsonString = await resp.Content.ReadAsStringAsync();
-            var result = JObject.Parse(jsonString);
+            var result = JsonConvert.DeserializeObject<YelpResponse>(jsonString);
      
-            return Ok(jsonString);
+            if(result == null) 
+            {
+                throw new Exception("Response Failed, Get Businesses");
+            }
+
+            return Ok(result.businesses);
         }
     }
 }
