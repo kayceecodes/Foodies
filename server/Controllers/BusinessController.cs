@@ -1,8 +1,12 @@
+using System.Collections.Generic;
+using System.Text.Json;
 using Foodies_api.Data;
 using Foodies_api.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RestSharp;
+using System.Net.Http.Headers;
+using Newtonsoft.Json.Linq;
 
 namespace Foodies_api.Controllers
 {
@@ -12,39 +16,27 @@ namespace Foodies_api.Controllers
     public class BusinessController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly RestClient _client;         
+
+        private readonly RestClient _client;
+        private string token = 
+        "CSiguMJNp2BL4tZcudgNueu6CPRy-lax1Zltio523c0ecnCmbdL0LIlAdfMeMntl85UOQoYCyJ8kJvRSGu2X_LvqBGLbcZSaT6yihQXsLV-MOPWJWvI_z8cUeJdTYnYx";
         public BusinessController(ApplicationDbContext context)
         {
             _context = context;
-            _client = new RestClient("https://api.yelp.com/v3/businesses/search?location=19019&radius=40000");
+            _client = new RestClient("https://api.yelp.com/v3/businesses/search?");
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Restaurant>> GetBusiness()
+        public async Task<ActionResult> GetBusinesses()
         {
-            return _context.Business.ToList();
-        }
-        [HttpGet("/")]
-        public ActionResult<IEnumerable<Business>> GetBusinesses() 
-        {
-
+            HttpClient Http = new();
+            Http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var resp = await Http.GetAsync("https://api.yelp.com/v3/businesses/search?location=19019&radius=40000");
             
-            return 
-        }
-        [HttpGet("{id}")]
-        public ActionResult<IEnumerable<Restaurant>> GetRestaurantById(int id)
-        {
-            return Ok(_context.Business.FirstOrDefault(r => r.Id == id)); 
-        }
-
-        [HttpPost]
-        public ActionResult<Restaurant> PostRestaurant(Restaurant restaurant)
-        {
-            _context.Business.Add (restaurant);
-            Console.WriteLine(restaurant.Id);
-            _context.SaveChanges();
-
-            return new OkResult();
+            var jsonString = await resp.Content.ReadAsStringAsync();
+            var result = JObject.Parse(jsonString);
+     
+            return Ok(jsonString);
         }
     }
 }

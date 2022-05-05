@@ -3,6 +3,7 @@ using System;
 using Foodies_api.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Foodies_api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220429135016_RemovedPartialClassFromBranches")]
+    partial class RemovedPartialClassFromBranches
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,7 +44,11 @@ namespace Foodies_api.Migrations
                     b.Property<int>("Rating")
                         .HasColumnType("integer");
 
-                    b.Property<int>("RestaurantId")
+                    b.Property<string>("RestaurantId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int?>("RestaurantId1")
                         .HasColumnType("integer");
 
                     b.Property<string>("State")
@@ -58,7 +64,7 @@ namespace Foodies_api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RestaurantId");
+                    b.HasIndex("RestaurantId1");
 
                     b.ToTable("Branches");
                 });
@@ -280,9 +286,7 @@ namespace Foodies_api.Migrations
                 {
                     b.HasOne("Foodies_api.Models.Restaurant", null)
                         .WithMany("Branches")
-                        .HasForeignKey("RestaurantId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RestaurantId1");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
