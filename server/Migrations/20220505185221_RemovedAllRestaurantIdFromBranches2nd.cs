@@ -4,7 +4,7 @@
 
 namespace Foodies_api.Migrations
 {
-    public partial class EditRestaurantIdToInt : Migration
+    public partial class RemovedAllRestaurantIdFromBranches2nd : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

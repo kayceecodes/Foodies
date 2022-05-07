@@ -1,12 +1,10 @@
 using System.Collections.Generic;
-using System.Text.Json;
 using Foodies_api.Data;
 using Foodies_api.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RestSharp;
 using System.Net.Http.Headers;
-using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 
 namespace Foodies_api.Controllers
@@ -28,11 +26,17 @@ namespace Foodies_api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetBusinesses()
+        public async Task<ActionResult> GetBusinesses(SearchTerm searchTerm)
         {
             HttpClient Http = new();
             Http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            var resp = await Http.GetAsync("https://api.yelp.com/v3/businesses/search?location=19019&radius=40000");
+
+            if(searchTerm.Location == null && (searchTerm.Latitude == null && searchTerm.Longitude == null))
+            {
+                throw new Exception("You must enter at least one of the two, location (zipcode) or both lat & lng.");
+            }
+
+            var resp = await Http.GetAsync($"https://api.yelp.com/v3/businesses/search?location={searchTerm.Location}&radius={searchTerm.Radius}");
             
             var jsonString = await resp.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<YelpResponse>(jsonString);
@@ -42,7 +46,7 @@ namespace Foodies_api.Controllers
                 throw new Exception("Response Failed, Get Businesses");
             }
 
-            return Ok(result.businesses);
+            return Ok(result.Businesses);
         }
     }
 }

@@ -42,7 +42,7 @@ namespace Foodies_api.Migrations
                     b.Property<int>("Rating")
                         .HasColumnType("integer");
 
-                    b.Property<int>("RestaurantId")
+                    b.Property<int?>("RestaurantId")
                         .HasColumnType("integer");
 
                     b.Property<string>("State")
@@ -280,9 +280,7 @@ namespace Foodies_api.Migrations
                 {
                     b.HasOne("Foodies_api.Models.Restaurant", null)
                         .WithMany("Branches")
-                        .HasForeignKey("RestaurantId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RestaurantId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
