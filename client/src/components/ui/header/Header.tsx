@@ -160,7 +160,7 @@ export default function Header(props: Omit<Props, "setFormType" | "setOpen">) {
   }
 
   const routes: Route[] = [
-    { name: "Home", link: "/", activeIndex: 0 }    
+    { name: "Home", link: "/", activeIndex: 0 }
   ];
 
   useEffect(() => {

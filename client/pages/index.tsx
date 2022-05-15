@@ -14,38 +14,47 @@ import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({}));
 
-function Home() {
+interface Business {
+  name: string;
+  imgUrl: string;
+  isClosed: boolean;
+  url: string;
+  // categories: Categories,
+  rating: number;
+  // coordinates: Coordinates,
+  price: string;
+  // zipcode:
+}
+
+const usersLocation = 19019;
+const initialRadius = 40000;
+
+function Home(props: any) {
   const [popup, setPopupStatus] = useState("hide");
-  const [restaurants, getRestaurants] = useState();
+  const [restaurants, setRestaurants] = useState<any[]>();
   const [state, setState] = useState({
     lat: 39.9526,
     lng: -75.1652,
-    zipcode: 19019,
+    location: 19019,
     radius: 40000,
   });
   const classes = useStyles();
-  const url = "https://api.yelp.com/v3/businesses/search?";
+  const url = `https://localhost:7292/api/business?location=19801&radius=40000`;
   useEffect(() => {
-    fetch("https://api.yelp.com/v3/businesses/search?location=19019&radius=40000",
-    {
+    let data = fetch(url, {
+      method: "GET",
       headers: {
-        Authorization: "Bearer " + process.env.NEXT_PUBLIC_YELP_API_KEY,
-        Origin: 'localhost',
-      }
+        "Content-Type": "application/json",
+        token: ""
+      },
     })
-    // fetch(url + `location=${state.zipcode}&radius=${state.radius}`, {
-    //   headers: {
-    //     "Cache-Control": "no-cache",
-    //     "Accept": "*/*",
-    //     "Connection": "keep-alive",
-    //     "Accept-Encoding": "gzip, dflate, br",
-    //     Authorization: 'Bearer CSiguMJNp2BL4tZcudgNueu6CPRy-lax1Zltio523c0ecnCmbdL0LIlAdfMeMntl85UOQoYCyJ8kJvRSGu2X_LvqBGLbcZSaT6yihQXsLV-MOPWJWvI_z8cUeJdTYnYx',
-    //     "Access-Control-Allow-Origin": 'localhost',
-    //   },
-    // })
       .then((res) => res.json())
+      .then((data) => {
+        setRestaurants(data)
+        console.log("Success - data object: ", data);
+      })
       .catch((err) => {
-        console.log("Error Message: ", err);
+        console.log("error, get businesses: ", err);
       });
   });
 
@@ -64,9 +73,10 @@ function Home() {
           zoom: 10,
         }}
         mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
-        mapStyle="mapbox://styles/mapbox/streets-v11"
+        // mapStyle="mapbox://styles/mapbox/streets-v11"
+        mapStyle="mapbox://styles/leighhalliday/ckhjaksxg0x2v19s1ovps41ef"
       >
-        {/* {properties.map((property: Property, index) => (
+        {/* {restaurants.map((property: any, index) => (
           <div key={property.id}>
             <Marker latitude={property.latitude} longitude={property.longitude}>
               <button
@@ -99,7 +109,8 @@ function Home() {
             Status={Status}
             selectedProperty={selectedProperty}
           />
-        )} */}
+        )}
+          */}
       </Map>
     </Box>
   );

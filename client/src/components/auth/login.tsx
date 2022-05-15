@@ -12,18 +12,28 @@ import Icon from "@mui/material/Icon";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Modal from "@mui/material/Modal";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { Dispatch } from "redux";
+import { login, LoginState } from '../../store/actions/actionCreators/auth'
 
 interface Props {
     setOpen: React.Dispatch<React.SetStateAction<boolean>>
     open: boolean
 }
 export default function Login(props: Props) {
+  const [state, setState] = React.useState<LoginState>({
+    username: '',
+    password: ''
+  });
+  const dispatch: Dispatch<any> = useDispatch();
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    dispatch(login(state));
     // eslint-disable-next-line no-console
     console.log({
-      email: data.get("email"),
+      username: data.get("username"),
       password: data.get("password"),
     });
   };
@@ -61,11 +71,12 @@ export default function Login(props: Props) {
             margin="normal"
             required
             fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
+            id="username"
+            label="username"
+            name="username"
+            autoComplete="username"
             autoFocus
+            value="junior21"            
           />
           <TextField
             variant="standard"
@@ -77,6 +88,7 @@ export default function Login(props: Props) {
             type="password"
             id="password"
             autoComplete="current-password"
+            value="Password@123"
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}

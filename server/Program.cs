@@ -59,6 +59,16 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+// builder.Services.AddCors(options =>
+// {
+//     options.AddPolicy(name: MyAllowSpecificOrigins,
+//                       policy  =>
+//                       {
+//                           policy.WithOrigins("http://example.com",
+//                                               "http://www.contoso.com");
+//                       });
+// });
+
 // Authentication & Authorization
 app.UseAuthentication();
 app.UseAuthorization();

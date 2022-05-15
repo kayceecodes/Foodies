@@ -77,6 +77,17 @@ export default function SignUp(props: Props) {
             id="password"
             autoComplete="current-password"
           />
+           <TextField
+            variant="standard"
+            margin="normal"
+            required
+            fullWidth
+            name="confirm-password"
+            label="Confirm Password"
+            type="password"
+            id="confirm-password"
+            // autoComplete="current-password"
+          />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"

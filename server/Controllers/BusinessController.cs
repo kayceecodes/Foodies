@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 
 namespace Foodies_api.Controllers
 {
-    [Authorize]
+    // [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class BusinessController : Controller
@@ -26,6 +26,7 @@ namespace Foodies_api.Controllers
         }
 
         [HttpGet]
+        [HttpGet("{searchTerm}")]
         public async Task<ActionResult> GetBusinesses(SearchTerm searchTerm)
         {
             HttpClient Http = new();

@@ -12,6 +12,12 @@ const theme = createTheme({
     },
   },
   components: {
+    MuiButton: {
+      defaultProps: {
+      },
+      styleOverrides: {
+      }
+    },
     MuiLink: {
       defaultProps: {
         underline: 'none',
