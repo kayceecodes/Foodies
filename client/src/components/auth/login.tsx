@@ -21,7 +21,7 @@ interface Props {
     open: boolean
 }
 export default function Login(props: Props) {
-  const [state, setState] = React.useState<LoginState>({
+  const [loginState, setLoginState] = React.useState<LoginState>({
     username: '',
     password: ''
   });
@@ -30,7 +30,7 @@ export default function Login(props: Props) {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    dispatch(login(state));
+    dispatch(login(loginState));
     // eslint-disable-next-line no-console
     console.log({
       username: data.get("username"),
@@ -96,6 +96,7 @@ export default function Login(props: Props) {
           />
 
           <Button
+          onClick={() => dispatch(login(loginState))}
             style={{ margin: "32px 0" }}
             type="submit"
             fullWidth
