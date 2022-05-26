@@ -20,11 +20,13 @@ interface Props {
     setOpen: React.Dispatch<React.SetStateAction<boolean>>
     open: boolean
 }
+
 export default function Login(props: Props) {
   const [loginState, setLoginState] = React.useState<LoginState>({
     username: '',
     password: ''
   });
+
   const dispatch: Dispatch<any> = useDispatch();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -37,7 +39,9 @@ export default function Login(props: Props) {
       password: data.get("password"),
     });
   };
+
   const handleClose = () => props.setOpen(!props.open);
+  
   return (
     <Modal
       aria-labelledby="modal-login-label"
