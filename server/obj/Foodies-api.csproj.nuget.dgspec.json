@@ -1,26 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/home/kayc/web/dotnet/Foodies/server/Foodies-api.csproj": {}
+    "C:\\Users\\justk\\Dropbox\\repos\\Foodies\\server\\Foodies-api.csproj": {}
   },
   "projects": {
-    "/home/kayc/web/dotnet/Foodies/server/Foodies-api.csproj": {
+    "C:\\Users\\justk\\Dropbox\\repos\\Foodies\\server\\Foodies-api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/kayc/web/dotnet/Foodies/server/Foodies-api.csproj",
+        "projectUniqueName": "C:\\Users\\justk\\Dropbox\\repos\\Foodies\\server\\Foodies-api.csproj",
         "projectName": "Foodies-api",
-        "projectPath": "/home/kayc/web/dotnet/Foodies/server/Foodies-api.csproj",
-        "packagesPath": "/home/kayc/.nuget/packages/",
-        "outputPath": "/home/kayc/web/dotnet/Foodies/server/obj/",
+        "projectPath": "C:\\Users\\justk\\Dropbox\\repos\\Foodies\\server\\Foodies-api.csproj",
+        "packagesPath": "C:\\Users\\justk\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\justk\\Dropbox\\repos\\Foodies\\server\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/kayc/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\justk\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.telerik.com/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
@@ -89,7 +90,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -101,7 +103,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.300/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.404\\RuntimeIdentifierGraph.json"
         }
       }
     }
