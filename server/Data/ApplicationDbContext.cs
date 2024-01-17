@@ -16,5 +16,9 @@ namespace Foodies_api.Data
         }
         //   public virtual DbSet<User> Users { get; set; } = null!;
         public virtual DbSet<Restaurant> Restaurants { get; set; } = null!;
+        public DbSet<Branches> Branches { get; set; }
+        public DbSet<Business> Business { get; set; }
+                public DbSet<SearchTerm> SearchTerm { get; set; }
+
     }
 }

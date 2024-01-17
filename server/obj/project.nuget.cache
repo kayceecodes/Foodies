@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "pROCkc7OX3745RSFyNG3hLLcTM605HqxN0GYe+/vSxnqWJ6vkyY7PD+TK95vktuBdpZ+eobtAwB/Z2XhxO1Wdw==",
+  "dgSpecHash": "DCqZvZPOTfcpXcK9/GIRQFG/OJgLp5bt+AlNgDd7kWrhu/hxv7lNmxf6S9dvN/e5YSWSmsdVc8RyPPMVE5SuZQ==",
   "success": true,
   "projectFilePath": "/home/kayc/web/dotnet/Foodies/server/Foodies-api.csproj",
   "expectedPackageFiles": [

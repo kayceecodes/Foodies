@@ -48,3 +48,8 @@
 /home/kayc/web/dotnet/Foodies/server/obj/Debug/net6.0/Foodies-api.pdb
 /home/kayc/web/dotnet/Foodies/server/obj/Debug/net6.0/Foodies-api.genruntimeconfig.cache
 /home/kayc/web/dotnet/Foodies/server/obj/Debug/net6.0/ref/Foodies-api.dll
+/home/kayc/web/dotnet/Foodies/server/obj/Debug/net6.0/staticwebassets/msbuild.Foodies-api.Microsoft.AspNetCore.StaticWebAssets.props
+/home/kayc/web/dotnet/Foodies/server/obj/Debug/net6.0/staticwebassets/msbuild.build.Foodies-api.props
+/home/kayc/web/dotnet/Foodies/server/obj/Debug/net6.0/staticwebassets/msbuild.buildMultiTargeting.Foodies-api.props
+/home/kayc/web/dotnet/Foodies/server/obj/Debug/net6.0/staticwebassets/msbuild.buildTransitive.Foodies-api.props
+/home/kayc/web/dotnet/Foodies/server/obj/Debug/net6.0/staticwebassets.pack.json
