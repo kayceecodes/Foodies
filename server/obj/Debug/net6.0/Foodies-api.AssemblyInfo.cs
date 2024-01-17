@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Foodies-api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+52207099143d334ac90a9e24716b26de7bddd647")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e666d46902b5a12601b6053f56eee67a9b64024c")]
 [assembly: System.Reflection.AssemblyProductAttribute("Foodies-api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Foodies-api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
